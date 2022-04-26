@@ -18,6 +18,8 @@ import SidePer from '@/components/DCH/Demo/People_new/SidePer'
 import AllManagement from '@/components/DCH/Demo/People_new/AllManagement'
 import SalaryManagement from '@/components/DCH/Demo/People_new/SalaryManagement'
 
+//CXD test
+import Test from '@/components/CXD/Test'
 
 Vue.use(Router)
 
@@ -85,6 +87,13 @@ export default new Router({
 
         
       ]
+    },
+
+    //测试
+    {
+      path: '/Test',
+      name: 'Test',
+      component: Test
     },
 
   ]
