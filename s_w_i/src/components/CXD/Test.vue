@@ -1,27 +1,27 @@
 <template>
   <div class="share">
-    <div class="header light-theme">
-      <div class="logo-container">
-        <div class="logo">
-          <img class="img" src="../../assets/logo.png" />
-        </div>
-      </div>
-      <ul class="navigation-bar">
-        <div class="active item current-tab">旅游社区</div>
-        <div class="active item-share ">分享笔记</div>
-        <div class="active item">阿巴阿巴</div>
-        <div class="active item">阿巴阿巴</div>
-        <div class="active item">个人中心</div>
-        <div class="active item">登录/注册</div>
-      </ul>
-    </div>
+    <Header></Header>
     <div class="content">
       <div class="note-container">
         <div class="note-wrapper">
           <div class="note-column">
             <div class="note">
               <div class="note-info">
-                <div class="note-image">
+                <div class="page">
+                  <div class="box">
+                    <div class="slideWrapper">
+                      <a href="xxx" target="_blank"
+                        ><img class="slide" src="xxx.jpg "
+                      /></a>
+                    </div>
+                    <div class="slideWrapper">
+                      <a href="xxx" target="_blank"
+                        ><img class="slide" src="xxx.jpg "
+                      /></a>
+                    </div>
+                  </div>
+                </div>
+                <!-- <div class="note-image">
                   <div class="overflow-block">
                     <div class="overflow-container loaded">
                       <img
@@ -30,7 +30,7 @@
                       />
                     </div>
                   </div>
-                </div>
+                </div> -->
                 <a class="title">上海佘山，出门野餐时记得带水果呀</a>
               </div>
               <div class="info">
@@ -575,12 +575,111 @@
 </template>
 
 <script>
+import Header from "@/components/CXD/header";
 export default {
-  data() {
-    return {};
+  components: {
+    Header
   },
-
-  methods: {}
+  data() {
+    return {
+      index: 1,
+      moveWith,
+      dotItems,
+      animate,
+      currentX,
+      moveX,
+      currentOffset,
+      minMoveOffset,
+      imgLen,
+      boxDom,
+      isAutoPlay,
+      isKeyDown: false,
+      isDragingImg: false,
+      DEFAULT_DURATION: "300ms",
+      ANIMATION_INTERVAL: 3000
+    };
+  },
+  mounted: function() {
+    setTimeout(() => {
+      this.init();
+    }, 1000);
+  },
+  methods: {
+    init() {
+      boxDom.addEventListener("mousedown", e => {
+        stopAutoPlay();
+        this.isKeyDown = true;
+        isDragingImg = false;
+        currentX = e.clientX;
+      });
+      boxDom.addEventListener("mousemove", e => {
+        if (isKeyDown) {
+          moveX = e.clientX - currentX;
+          let moveOffset = moveX - currentOffset;
+          changeBoxDomStyle(moveOffset);
+          isDragingImg = true;
+        }
+      });
+      document.onmouseup = function() {
+        isKeyDown = false;
+        if (Math.abs(moveX) > minMoveOffset) {
+          if (moveX > 0) {
+            //移动到前一个图片
+            if (index === 1) {
+              //移动到真正的图片8
+              index = imgLen - 2;
+              currentOffset = index * moveWith;
+            } else {
+              index = index - 1;
+              currentOffset = currentOffset - moveWith;
+            }
+          } else {
+            //移动到后一个图片
+            currentOffset = currentOffset + moveWith;
+            index = index + 1;
+            if (index === imgLen - 1) {
+              //移动到真正的图片1
+              currentOffset = moveWith;
+              index = 1;
+            }
+          }
+          changeDotsStyle();
+        }
+        changeBoxDomStyle(-currentOffset, "300ms");
+        autoPlay();
+      };
+      window.addEventListener(
+        "resize",
+        () => {
+          stopAutoPlay();
+          moveWith = document.querySelector(".slide").offsetWidth;
+          minMoveOffset = moveWith / 2;
+          currentOffset = index * moveWith;
+          changeBoxDomStyle(-currentOffset);
+          autoPlay();
+        },
+        false
+      );
+    },
+    stopImgDrag() {
+      let slideImgs = document.querySelectorAll("img.slide");
+      for (img of slideImgs) {
+        img.ondragstart = () => {
+          return false;
+        };
+      }
+    },
+    linkClickContr() {
+      let aNodeList = document.querySelectorAll(".slideWrapper > a");
+      for (let i of aNodeList)
+        i.addEventListener("click", e => {
+          if (isDragingImg) {
+            //isDragingImg在mousemove里面设置成了true
+            e.preventDefault();
+          }
+        });
+    }
+  }
 };
 </script>
 
@@ -596,90 +695,6 @@ export default {
   flex-direction: column;
   justify-content: space-between;
 }
-/* header */
-.header {
-  display: flex;
-  position: absolute;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  height: 100px;
-  font-size: 16px;
-  font-family: PingFang SC, Helvetica, Arial, sans-serif;
-  font-weight: 500;
-}
-.header .logo-container {
-  height: 60px;
-  margin-left: 91px;
-  display: flex;
-  align-items: center;
-}
-.header .logo-container .logo {
-  cursor: pointer;
-  margin-top: 1px;
-  width: 180px;
-  height: 60px;
-  position: relative;
-}
-.header .logo-container .logo .img {
-  height: 100%;
-}
-.header .navigation-bar {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  margin-right: 220px;
-  padding: 0;
-}
-.header .navigation-bar .active {
-  margin-left: 58px;
-  text-decoration: none;
-}
-.header .navigation-bar .item {
-  position: relative;
-  cursor: pointer;
-}
-.header .navigation-bar .item::before {
-  position: absolute;
-  bottom: -8px;
-  visibility: hidden;
-  content: "";
-  width: 100%;
-  height: 2px;
-  background-color: rgb(200, 0, 0);
-  transform: translateX(-100%);
-  border-radius: 2px;
-  opacity: 0;
-}
-.header .navigation-bar .current-tab {
-  color: rgb(200, 0, 0);
-}
-.header .navigation-bar .current-tab::before {
-  visibility: visible;
-  transform: translateX(0);
-  opacity: 1;
-}
-.header .navigation-bar .item-share {
-  position: relative;
-  width:100px;
-  height:40px;
-  text-align: center;
-  line-height: 40px;
-  cursor: pointer;
-  border-radius: 5px;
-  border: 1px solid white;
-  background-color: rgb(200, 0, 0);
-  color: white;
-}
-.header .navigation-bar .item-share:hover {
-  background-color: white;
-  border: 1px solid rgb(200, 0, 0);
-  color: rgb(200, 0, 0);
-}
-.light-theme {
-  background-color: white;
-}
-
 /* content */
 .content {
   position: relative;
@@ -718,7 +733,7 @@ export default {
   align-items: center;
   position: relative;
 }
-.content .note-wrapper .note-column .note::after {
+.note::after {
   /* 需要显示的内容为空 */
   content: "";
   /* color: #fff; */
@@ -731,45 +746,49 @@ export default {
   background: rgba(0, 0, 0, 0.3) no-repeat center;
   background-size: 30px 30px;
 }
-.content .note-wrapper .note-column .note:hover::after {
+.note:hover::after {
   display: block;
 }
-.content .note-wrapper .note-column .note .note-info {
+.note .page {
+  /* 让视线范围内只显示一张图片 */
+  overflow: hidden;
+  /* 用于点的定位 */
+  position: relative;
+}
+.note .page .box {
+  display: flex;
+  /* 设置flex布局，默认从左到右依次排列。 */
+}
+.page .box .slideWrapper {
+  width: 100%;
+  height: 100%;
+  flex-shrink: 0;
+  /* 不让容器等比例缩小 */
+}
+.note .note-info {
   width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
 }
-.content .note-wrapper .note-column .note .note-info .note-image {
+.note .note-info .note-image {
   position: relative;
 }
-.content
-  .note-wrapper
-  .note-column
-  .note
-  .note-info
-  .note-image
-  .overflow-block {
+.note .note-info .note-image .overflow-block {
   overflow: hidden;
 }
-.content
-  .note-wrapper
-  .note-column
-  .note
-  .note-info
-  .note-image
-  .overflow-container {
+.note .note-info .note-image .overflow-container {
   position: relative;
   transition: filter 0.7s ease;
 }
-.content .note-wrapper .note-column .note .note-info .note-image {
+.note .note-info .note-image {
   filter: none;
 }
-.content .note-wrapper .note-column .note .note-info .img {
+.note .note-info .img {
   width: 100%;
 }
-.content .note-wrapper .note-column .note .note-info .title {
+.note .note-info .title {
   padding: 0;
   margin: 10px 15px;
   color: #000;
@@ -777,7 +796,7 @@ export default {
   font-weight: 400;
   line-height: 24px;
 }
-.content .note-wrapper .note-column .note .info {
+.note .info {
   padding: 0 15px 10px;
   width: 100%;
   display: flex;
@@ -785,24 +804,24 @@ export default {
   justify-content: space-between;
   align-items: center;
 }
-.content .note-wrapper .note-column .note .info .user {
+.note .info .user {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
 }
-.content .note-wrapper .note-column .note .info .user .user-image-wrapper {
+.note .info .user .user-image-wrapper {
   width: 28px;
   height: 28px;
   border-radius: 50%;
   position: relative;
   overflow: hidden;
 }
-.content .note-wrapper .note-column .note .info .user .user-image {
+.note .info .user .user-image {
   width: 100%;
   height: 100%;
 }
-.content .note-wrapper .note-column .note .info .user .user-name {
+.note .info .user .user-name {
   width: 87px;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -812,20 +831,20 @@ export default {
   font-size: 12px;
 }
 
-.content .note-wrapper .note-column .note .info .like {
+.note .info .like {
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
   align-items: center;
 }
-.content .note-wrapper .note-column .note .info .like .heart {
+.note .info .like .heart {
   width: 18px;
   height: 18px;
   background-image: url("../../assets/heart-gray.png");
   background-repeat: no-repeat;
   background-size: contain;
 }
-.content .note-wrapper .note-column .note .info .like .like-num {
+.note .info .like .like-num {
   margin-left: 8px;
   color: #555;
   font-size: 12px;
