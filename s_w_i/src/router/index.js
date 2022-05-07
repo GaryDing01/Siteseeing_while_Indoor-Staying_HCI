@@ -8,23 +8,33 @@ import EmployeeLoginPage from '@/components/DCH/Demo/EmployeeAccount/EmployeeLog
 //进入员工操作页面
 import StaffEnter from '@/components/DCH/Demo/Enter/StaffEnter'
 
-//个人信息
-import EPersonalInfo from '@/components/DCH/Demo/People/EPersonalInfo'
-import EChangePwd from '@/components/DCH/Demo/People/EChangePwd'
+// DCH
+import FirstPage from '@/components/DCH/HCI/FirstPage.vue'
+import Header_DCH from '@/components/CXD/Header_DCH.vue'
 
-//员工（新版本）
-import StaffManagement from '@/components/DCH/Demo/People_new/StaffManagement'
-import SidePer from '@/components/DCH/Demo/People_new/SidePer'
-import AllManagement from '@/components/DCH/Demo/People_new/AllManagement'
-import SalaryManagement from '@/components/DCH/Demo/People_new/SalaryManagement'
+// CXD
+import Header from '@/components/CXD/header.vue'
 
 
 Vue.use(Router)
 
 export default new Router({
   routes: [
+    // DCH
     {
       path: '/',
+      name: 'FirstPage',
+      component: FirstPage
+    },
+
+    {
+      path: '/Header1',
+      name: 'Header1',
+      component: Header_DCH
+    },
+
+    {
+      path: '/MainPage',
       name: 'MainPage',
       component: MainPage
     },
@@ -51,41 +61,10 @@ export default new Router({
 
     // 员工
     {
-      path: '/StaffEnter',
-      name:'StaffEnter',
-      component: StaffEnter,
-      children:[
-        //个人信息
-        {
-          path:'/EPersonalInfo',
-          component:EPersonalInfo
-        },
-        {
-          path:'/EChangePwd',
-          component:EChangePwd
-        },
-        
-        //员工（新版本）
-        {
-          path:'/StaffManagement',
-          component:StaffManagement
-        },
-        {
-          path:'/SidePer',
-          component:SidePer
-        },
-        {
-          path:'/AllManagement',
-          component:AllManagement
-        },
-        {
-          path:'/SalaryManagement',
-          component:SalaryManagement
-        },
-
-        
-      ]
-    },
+      path: '/Header',
+      name: 'Header',
+      component: Header
+    }
 
   ]
 })
