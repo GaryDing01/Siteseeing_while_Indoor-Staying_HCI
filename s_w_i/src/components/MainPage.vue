@@ -4,7 +4,7 @@
     <div class="mainBackground" :style="backgroundIm"></div>
 
     <div class="mainBox">
-      <img class="titlePicture" src="../assets/title.png">
+      <!-- <img class="titlePicture" src="../assets/title.png"> -->
       <el-divider class="mainDivide"></el-divider>
       <button class="employeeEnterButton" @click="toEmployeeLoginPage()">员工登录</button>
       <!-- <button class="customEnterButton" @click="toCustomLoginPage()">用户登录</button> -->
@@ -20,7 +20,7 @@
     data () {
       return {
         backgroundIm:{
-          backgroundImage: "url(" + require("../assets/mainBackground.png") + ")",
+          // backgroundImage: "url(" + require("../assets/mainBackground.png") + ")",
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
         },

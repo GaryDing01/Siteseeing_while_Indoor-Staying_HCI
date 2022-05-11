@@ -9,8 +9,11 @@ import EmployeeLoginPage from '@/components/DCH/Demo/EmployeeAccount/EmployeeLog
 import StaffEnter from '@/components/DCH/Demo/Enter/StaffEnter'
 
 // DCH
-import FirstPage from '@/components/DCH/HCI/FirstPage.vue'
-import Header_DCH from '@/components/CXD/Header_DCH.vue'
+import Shuttering from '@/components/DCH/HCI/Shuttering.vue'
+import FirstPage from '@/components/DCH/HCI/FirstPage_update.vue'
+import Header_update1 from '@/components/CXD/Header_update1.vue'
+
+import CloudFirst from '@/components/DCH/HCI/CloudTouring/CloudFirst.vue'
 
 // CXD
 import Header from '@/components/CXD/header.vue'
@@ -20,18 +23,32 @@ Vue.use(Router)
 
 export default new Router({
   routes: [
+
     // DCH
+    // 模板
+    {
+      path: '/Shuttering',
+      name: 'Shuttering',
+      component: Shuttering
+    },
+    // 正式
     {
       path: '/',
       name: 'FirstPage',
       component: FirstPage
     },
-
     {
-      path: '/Header1',
-      name: 'Header1',
-      component: Header_DCH
+      path: '/Header_update1',
+      name: 'Header_update1',
+      component: Header_update1
     },
+    // 云旅游模块
+    {
+      path: '/CloudFirst',
+      name: 'CloudFirst',
+      component: CloudFirst
+    },
+
 
     {
       path: '/MainPage',

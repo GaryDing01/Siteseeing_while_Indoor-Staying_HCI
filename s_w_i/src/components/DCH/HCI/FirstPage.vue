@@ -1,28 +1,31 @@
 <template>
   <div>
-    <el-container>
-         <!-- <el-header> -->
-          <Header></Header>
-        <!-- </el-header> -->
+    <Header_update1></Header_update1>
+    
+    <!-- 空必要的距离 -->
+    <div style="height:11vh;background-color: black;"></div>
 
-         <el-main>
-          Main
-        </el-main>
-    </el-container>
+    <div class="watchout" style="position:relative;width:100%;margin-left:0px;height:88.3vh;background-color: aqua;">
+      <!-- Main -->
+      <img src="../../../assets/HiPicture/water2.png" alt="中国山水好风光" class="firstImg"/>
+    </div>
   </div>
 </template>
 
 <script>
 
-import Header from '@/components/CXD/header.vue'
+import Header_update1 from '../../CXD/Header_update1.vue'
+import global from "../../../assets/DCH/global.js"
 
 export default {
 
     name:"FirstPage",
-    components:{Header},
+    components:{Header_update1,global},
 
 
     mounted() {
+      global.transparent=2;
+      alert(global.transparent);
     },
 
     data() {
@@ -37,14 +40,15 @@ export default {
 
 <style scoped>
 
-  .el-main {
-    /* background-color: #E9EEF3; */
-    /* color: #333; */
-    text-align: center;
-    line-height: 160px;
+  .firstImg{
+    /* position: absolute; */
+    width:100%;
+    height:100%;
+    /* transform:scale(1,0.5) */
   }
-  body > .el-container {
-    margin-bottom: 40px;
-  }
+
+  .Header_update1.firstHeader {
+  background-image: url("../../../assets/mountain1.png");
+}
 
 </style>

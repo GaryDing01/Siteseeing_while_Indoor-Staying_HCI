@@ -33,7 +33,7 @@ export default {
   data () {
     return {
       backgroundIm:{
-        backgroundImage: "url(" + require("../../../../assets/mainBackground.png") + ")",
+        // backgroundImage: "url(" + require("../../../../assets/mainBackground.png") + ")",
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
       },

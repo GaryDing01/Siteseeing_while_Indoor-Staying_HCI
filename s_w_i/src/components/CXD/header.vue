@@ -2,7 +2,7 @@
   <div class="header light-theme">
     <div class="logo-container">
       <div class="logo">
-        <img class="img" src="../../assets/logo.png" />
+        <!-- <img class="img" src="../../assets/logo.png" /> -->
       </div>
     </div>
     <ul class="navigation-bar">

@@ -5,7 +5,7 @@
           <el-header class="customPageHeader" style="height:90px !important;color:white;" >
             <!-- <div style="margin-top:15px;"></div>  -->
             <div>
-              <img src="../../../../assets/logo2.png" class="logoStyle">
+              <!-- <img src="../../../../assets/logo2.png" class="logoStyle"> -->
             <p class="titleText2">{{title}}</p>
 
           <!-- <div class="perNote"> -->
