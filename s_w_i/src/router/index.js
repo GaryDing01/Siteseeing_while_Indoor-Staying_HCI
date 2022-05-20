@@ -35,6 +35,11 @@ export default new Router({
       component: EmployeeLoginPage
     },
 
+    {
+      path: '/speech',
+      component:()=>import("@/components/LBH/SpeechPage.vue"),
+    },
+
     // // 客户
     // {
     //   path: '/Reservation/CustomPage',
