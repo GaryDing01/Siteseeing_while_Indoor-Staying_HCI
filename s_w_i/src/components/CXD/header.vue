@@ -16,7 +16,7 @@
   </div>
 </template>
 <script>
-var now_tab = 0;
+var header_now_tab = 0;
 export default {
   data() {
     return {};
@@ -35,10 +35,10 @@ export default {
       let tabs = document.getElementsByClassName("active");
       for (let i = 0; i < tabs.length; i++) {
         tabs[i].addEventListener("click", function() {
-          if (now_tab == 1) {
+          if (header_now_tab == 1) {
             tabs[1].classList.remove("item-share-current");
-          } else tabs[now_tab].classList.remove("current-tab");
-          now_tab = i;
+          } else tabs[header_now_tab].classList.remove("current-tab");
+          header_now_tab = i;
           if (i != 1) {
             tabs[i].classList.add("current-tab");
           } else tabs[i].classList.add("item-share-current");
@@ -73,7 +73,8 @@ export default {
 /* header */
 .header {
   display: flex;
-  position: absolute;
+  position: fixed;
+  z-index: 100;
   justify-content: space-between;
   align-items: center;
   width: 100%;

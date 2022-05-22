@@ -18,6 +18,10 @@ import SidePer from '@/components/DCH/Demo/People_new/SidePer'
 import AllManagement from '@/components/DCH/Demo/People_new/AllManagement'
 import SalaryManagement from '@/components/DCH/Demo/People_new/SalaryManagement'
 
+//CXD
+import Share from '@/components/CXD/Share'
+import Detail from '@/components/CXD/Detail'
+import MyShare from '@/components/CXD/MyShare'
 
 Vue.use(Router)
 
@@ -87,5 +91,21 @@ export default new Router({
       ]
     },
 
+    //CXD
+    {
+      path: '/Share',
+      name: 'Share',
+      component: Share
+    },
+    {
+      path: '/Detail/:noteIndex',
+      name: 'Detail',
+      component: Detail
+    },
+    {
+      path: '/MyShare',
+      name: 'MyShare',
+      component: MyShare
+    }
   ]
 })
