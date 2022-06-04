@@ -14,6 +14,8 @@ import FirstPage from '@/components/DCH/HCI/FirstPage_update.vue'
 import Header_update1 from '@/components/CXD/Header_update1.vue'
 
 import CloudFirst from '@/components/DCH/HCI/CloudTouring/CloudFirst.vue'
+import GreatWall from '@/components/DCH/HCI/CloudTouring/GreatWall_Card.vue'
+import test1 from '@/components/DCH/HCI/CloudTouring/test1.vue'
 
 // CXD
 import Header from '@/components/CXD/header.vue'
@@ -48,6 +50,17 @@ export default new Router({
       name: 'CloudFirst',
       component: CloudFirst
     },
+    {
+      path: '/GreatWall',
+      name: 'GreatWall',
+      component: GreatWall
+    },
+    {
+      path: '/test1',
+      name: 'test1',
+      component: test1
+    },
+
 
 
     {

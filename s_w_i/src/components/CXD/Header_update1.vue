@@ -103,6 +103,7 @@ export default {
               break;
             case 3:
               //跳转到AI
+              this.$router.push("/CloudFirst")
               break;
             case 4:
               //跳转到个人主页
@@ -133,7 +134,7 @@ export default {
   background-size: 100%;
   opacity: 1;
   position: fixed;
-  z-index: 12;
+  z-index: 120000;
   border-bottom-width: var(--borderb);
   border-bottom-style:dashed;
   border-bottom-color: rgb(215, 213, 213);
