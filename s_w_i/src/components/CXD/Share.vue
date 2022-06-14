@@ -95,7 +95,8 @@
 </template>
 
 <script>
-import Header from "@/components/CXD/header";
+// import Header from "@/components/CXD/header";
+import Header from "@/components/CXD/Header_update1";
 import shareInfo from "@/components/CXD/shareInfo";
 export default {
   components: {
@@ -136,6 +137,7 @@ export default {
     init() {
       this.init_dom();
       this.init_fun();
+      this.init_session();
     },
     init_dom() {
       let note_column = document.querySelectorAll(".note-column");
@@ -161,8 +163,8 @@ export default {
               slideWrapper_div.classList.add("slideWrapper");
               slideWrapper_div.style = "visibility: visible;";
               let temp_a = document.createElement("a");
-              temp_a.href = "#";
-              temp_a.target = "_blank";
+              temp_a.href = "#/Detail/" + (i * 4 + j);
+              temp_a.target = "_self";
               let slide_img = document.createElement("img");
               slide_img.classList.add("slide");
               slide_img.classList.add("img");
@@ -174,8 +176,8 @@ export default {
               if (k != 6) {
                 slideWrapper_div.classList.add("slideWrapper");
                 let temp_a = document.createElement("a");
-                temp_a.href = "#";
-                temp_a.target = "_blank";
+                temp_a.href = "#/Detail/" + (i * 4 + j);
+                temp_a.target = "_self";
                 let slide_img = document.createElement("img");
                 slide_img.classList.add("slide");
                 slide_img.classList.add("img");
@@ -186,8 +188,8 @@ export default {
               } else {
                 slideWrapper_div.classList.add("slideWrapper");
                 let temp_a = document.createElement("a");
-                temp_a.href = "#";
-                temp_a.target = "_blank";
+                temp_a.href = "#/Detail/" + (i * 4 + j);
+                temp_a.target = "_self";
                 let slide_img = document.createElement("img");
                 slide_img.classList.add("slide");
                 slide_img.classList.add("img");
@@ -259,26 +261,66 @@ export default {
       for (let i = 0; i < like_list.length; i++) {
         let heart = like_list[i].querySelector(".heart");
         heart.addEventListener("click", () => {
-          if (this.like[Math.floor(i / 5)][i % 4] == 0) {
+          if(sessionStorage.getItem("uname")==null)
+          {
+            alert("请登录后点赞");
+            return;
+          }
+          if (this.like[Math.floor(i / 4)][i % 4] == 0) {
             //爱心变红
             heart.classList.replace("heart", "red-heart");
             //赞的数量加一
-            this.like[Math.floor(i / 5)][i % 4] = 1;
-            shareInfo.like_num[Math.floor(i / 5)][i % 4] =
-              shareInfo.like_num[Math.floor(i / 5)][i % 4] + 1;
+            this.like[Math.floor(i / 4)][i % 4] = 1;
+            shareInfo.like_num[Math.floor(i / 4)][i % 4] =
+              shareInfo.like_num[Math.floor(i / 4)][i % 4] + 1;
             let like_num_span = like_list[i].querySelector(".like-num");
             like_num_span.innerText =
-              shareInfo.like_num[Math.floor(i / 5)][i % 4];
+              shareInfo.like_num[Math.floor(i / 4)][i % 4];
+
+            //sessionStorage
+            if (sessionStorage.getItem("like-num") == null) {
+              sessionStorage.setItem("like-num", 1);
+              sessionStorage.setItem("like-1-col", Math.floor(i / 4));
+              sessionStorage.setItem("like-1-index", i % 4);
+            } else {
+              let collect_num = Number(sessionStorage.getItem("like-num"));
+              collect_num += 1;
+              sessionStorage.setItem("like-num", collect_num);
+              sessionStorage.setItem(
+                "like-" + collect_num + "-col",
+                Math.floor(i / 4)
+              );
+              sessionStorage.setItem("like-" + collect_num + "-index", i % 4);
+            }
           } else {
             //爱心变灰
             heart.classList.replace("red-heart", "heart");
             //赞的数量减一
-            this.like[Math.floor(i / 5)][i % 4] = 0;
-            shareInfo.like_num[Math.floor(i / 5)][i % 4] =
-              shareInfo.like_num[Math.floor(i / 5)][i % 4] - 1;
+            this.like[Math.floor(i / 4)][i % 4] = 0;
+            shareInfo.like_num[Math.floor(i / 4)][i % 4] =
+              shareInfo.like_num[Math.floor(i / 4)][i % 4] - 1;
             let like_num_span = like_list[i].querySelector(".like-num");
             like_num_span.innerText =
-              shareInfo.like_num[Math.floor(i / 5)][i % 4];
+              shareInfo.like_num[Math.floor(i / 4)][i % 4];
+
+            //sessionStorage
+            let collect_num = Number(sessionStorage.getItem("like-num"));
+            for (let j = 1; j <= collect_num; j++) {
+              if (
+                sessionStorage.getItem("like-" + j + "-col") ==
+                  "" + Math.floor(i / 4) &&
+                sessionStorage.getItem("like-" + j + "-index") == "" + (i % 4)
+              ) {
+                sessionStorage.removeItem("like-" + j + "-col");
+
+                sessionStorage.removeItem("like-" + j + "-index");
+              }
+            }
+            collect_num -= 1;
+            sessionStorage.setItem("like-num", collect_num);
+            if (collect_num == 0) {
+              sessionStorage.removeItem("like-num");
+            }
           }
         });
       }
@@ -289,7 +331,7 @@ export default {
           // this.$router.push({
           //   path: `/detail/${this.nowIndex}`
           // });
-          window.open(`#Detail/` + i, "_blank");
+          // window.open(`#Detail/` + i, "_blank");
         });
       }
       //移动图片功能
@@ -324,6 +366,31 @@ export default {
           note_list[i].classList.remove("current-note");
           this.remove_fun();
         });
+      }
+    },
+    init_session() {
+      //如果已点赞，桃心为红，点赞数加1
+      if (sessionStorage.getItem("like-num") != null) {
+        let like_num = sessionStorage.getItem("like-num");
+        let like_list = document.querySelectorAll(".like");
+        for (let i = 1; i <= like_num; i++) {
+          let temp_col = Number(sessionStorage.getItem("like-" + i + "-col"));
+          let temp_index = Number(
+            sessionStorage.getItem("like-" + i + "-index")
+          );
+          like_list[temp_col * 4 + temp_index]
+            .querySelector(".heart")
+            .classList.replace("heart", "red-heart");
+          this.like[temp_col][temp_index] = 1;
+          let like_num_span = like_list[
+            temp_col * 4 + temp_index
+          ].querySelector(".like-num");
+          if (sessionStorage.getItem("like-" + i + "-flag") != null) {
+            sessionStorage.removeItem("like-" + i + "-flag");
+            like_num_span.innerText = shareInfo.like_num[temp_col][temp_index]+1;
+          } else
+            like_num_span.innerText = shareInfo.like_num[temp_col][temp_index];
+        }
       }
     },
     add_fun() {
@@ -416,7 +483,7 @@ export default {
         this.moveX = e.clientX - this.currentX;
         let moveOffset = this.moveX - this.currentOffset;
         this.changeboxDomStyle(moveOffset);
-        this.isDragingImg = true;
+        if (this.moveX != 0) this.isDragingImg = true;
         let parent = this.boxDom.parentNode;
         //获得父节点的坐标已经宽度
         let position = parent.getBoundingClientRect();
@@ -517,7 +584,7 @@ export default {
   position: relative;
   margin-top: 100px;
   padding-bottom: 50px;
-  border-top: 1px solid #eee;
+  /* border-top: 1px solid #eee; */
   background-color: #fff;
 }
 .cxd-share .content .note-container {

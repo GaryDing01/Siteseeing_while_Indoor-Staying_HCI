@@ -1,5 +1,5 @@
 <template>
-  <div class="firstHeader" :style="{'--borderb':borderb}">
+  <div class="firstHeader" :style="{ '--borderb': borderb }">
     <div class="header light-theme">
       <div class="logo-container">
         <div class="logo">
@@ -11,15 +11,17 @@
       <!-- <div style="width:5%;background-color=black;"></div> -->
 
       <ul class="navigation-bar" style="">
-        <div class="active item current-tab">旅游社区</div>
-        <div class="active item-share ">分享笔记</div>
-        <div class="active item">阿巴阿巴</div>
-        <div class="active item">阿巴阿巴</div>
-        <div class="active item">个人中心</div>
-        <div class="active item">登录/注册</div>
+        <a class="active item current-tab">景点推荐</a>
+        <a class="active item-share ">云旅游</a>
+        <a class="active item">旅游社区</a>
+        <a class="active item">分享笔记</a>
+        <a class="active item">个人中心</a>
+        <a class="active item">登录/注册</a>
       </ul>
 
-      <div style="width:2.5%;height:80%;position:relative;margin-left: -90px;margin-right:-65px;">
+      <div
+        style="width:2.5%;height:80%;position:relative;margin-left: -90px;margin-right:-65px;"
+      >
         <a href="https://www.bilibili.com/" style="background-color:blue;">
           <img
             src="../../assets/BiliBili.png"
@@ -29,7 +31,10 @@
         </a>
       </div>
       <div style="width:2.5%;height:80%;position:relative;margin-right:-65px;">
-        <a href="https://browser.qq.com/sem/sem049/index.html" style="background-color:red;">
+        <a
+          href="https://browser.qq.com/sem/sem049/index.html"
+          style="background-color:red;"
+        >
           <img
             src="../../assets/QQ-03.png"
             style="transform:scale(0.15);display: flex;position:absolute;margin-left:-80px;margin-top:-100.5px;"
@@ -46,33 +51,31 @@
           />
         </a>
       </div>
-      
     </div>
     <!-- <el-divider></el-divider> -->
     <div style="margin-top:0px;"></div>
   </div>
 </template>
 <script>
-
-import global from "../../assets/DCH/global.js"
+import global from "../../assets/DCH/global.js";
 
 var now_tab = 0;
 
 export default {
   name: "Header_update1",
-  components:{global},
+  components: { global },
 
   mounted() {
-    this.borderb=global.transparent;
+    this.borderb = global.transparent;
     this.init();
   },
 
   data() {
     return {
-      borderb:"0.2px",
+      borderb: "0.2px"
     };
   },
-  
+
   methods: {
     init() {
       //给logo绑定事件
@@ -93,23 +96,39 @@ export default {
           } else tabs[i].classList.add("item-share-current");
           switch (i) {
             case 0:
-              //跳转到笔记广场
+              //跳转到语音识别
+              self.location.href = "/#/speech";
+              //  window.open(`#speech`, "_self");
               break;
             case 1:
-              //跳转到分享页面
+              //跳转到AI
+              self.location.href = "/#/CloudFirst";
+              // window.open(`#CloudFirst`, "_self");
+              // this.$router.push("/CloudFirst");
               break;
             case 2:
-              //跳转到语音识别
+              //跳转到笔记广场
+              // tabs[i].href="/#/Share";
+              // window.open(`#Share`);
+              self.location.href = "/#/Share";
               break;
             case 3:
-              //跳转到AI
-              this.$router.push("/CloudFirst")
+              //跳转到分享页面 有关于登录的判断，之后加
+              if (sessionStorage.getItem("uname") != null)
+                self.location.href = "/#/MyShare";
+              else alert("请登录后分享");
               break;
             case 4:
               //跳转到个人主页
+              self.location.href = "/#/PersonalCenter";
+              // window.location.reload();
+              // setTimeout('location.href="/#/PersonalCenter";',100);
+              // window.location.replace("/#/PersonalCenter")
+              // history.go(0)
               break;
             case 5:
               //跳转到登录登出
+              self.location.href = "/#/Login";
               break;
           }
         });
@@ -136,7 +155,7 @@ export default {
   position: fixed;
   z-index: 120000;
   border-bottom-width: var(--borderb);
-  border-bottom-style:dashed;
+  border-bottom-style: dashed;
   border-bottom-color: rgb(215, 213, 213);
 }
 
@@ -174,7 +193,7 @@ export default {
 .header .phase {
   margin-top: 15px;
   margin-left: -50px;
-  margin-right:45px;
+  margin-right: 45px;
   background-image: url("../../assets/phase.png");
   width: 200px;
   height: 40px;
@@ -247,11 +266,11 @@ export default {
   /* background-color: white; */
 }
 
-/deep/ .el-divider {
+/* /deep/ .el-divider {
   background-color: black;
   margin-top: 16.5px;
   margin-left: 0px;
   padding:0px;
   opacity: 0.1;
-}
+} */
 </style>

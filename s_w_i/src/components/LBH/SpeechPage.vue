@@ -1028,7 +1028,8 @@
   </div>
 </template>
 <script>
-import Header from "@/components/CXD/header";
+// import Header from "@/components/CXD/header";
+import Header from "@/components/CXD/Header_update1";
 export default {
   components: {
     Header,
@@ -1244,9 +1245,7 @@ window.onload = function () {
 
   if (window.SpeechRecognition === null) {
     document.getElementById("ws-unsupported").classList.remove("hidden");
-    document
-      .getElementById("button-play-ws")
-      .setAttribute("disabled", "disabled");
+    document.getElementById("button-play-ws").setAttribute("disabled", "disabled");
     // document
     //   .getElementById("button-stop-ws")
     //   .setAttribute("disabled", "disabled");
@@ -1320,9 +1319,7 @@ window.onload = function () {
       log.innerHTML =
         "Recognition error: " + event.message + "<br />" + log.innerHTML;
     };
-    document
-      .getElementById("button-play-ws")
-      .addEventListener("click", function () {
+    document.getElementById("button-play-ws").addEventListener("click", function () {
         // Set if we need interim results
         // recognizer.interimResults = document.querySelector(
         //   'input[name="recognition-type"][value="interim"]'

@@ -93,22 +93,17 @@
               </div>
             </div>
             <div class="note-detail">
-              人间四月芳菲尽<br />
-
-              山寺桃花始盛开<br />
-
-              四月，走在春末的季里。只需舒眉一瞻，便有柔柔的明媚妖娆了眼眸。绿柳吐烟，陌上花艳。<br />
-
-              四月的天爱上了三月的地，但却离她太远，等到他思念的忧伤逆流成河时，天就会下起这丝丝入怀的雨，刮起这满面桃花的风。四月的风，恣意地吹拂亲吻着我们的脸，轻轻摇曳着我们的心；四月的云，躲在星空之中，默默地承载着尘世永恒的依恋。<br />
-
-              四月美在祭祖的哀思，美在人间的温情，四月，美在诗里。<br />
+              人间四月芳菲尽,山寺桃花始盛开,四月，走在春末的季里。只需舒眉一瞻，便有柔柔的明媚妖娆了眼眸。绿柳吐烟，陌上花艳。四月的天爱上了三月的地，但却离她太远，等到他思念的忧伤逆流成河时，天就会下起这丝丝入怀的雨，刮起这满面桃花的风。四月的风，恣意地吹拂亲吻着我们的脸，轻轻摇曳着我们的心；四月的云，躲在星空之中，默默地承载着尘世永恒的依恋。四月美在祭祖的哀思，美在人间的温情，四月，美在诗里。
             </div>
             <div class="date">05-02</div>
             <div class="comment">
-              <div class="comment-num">共<span class="num">3</span>条评论</div>
+              <div class="comment-num">
+                共<span class="num">{{ comment_num }}</span
+                >条评论
+              </div>
               <div class="my-comment">
                 <div class="comment-user">
-                  <img class="user-img" src="../../assets/user1.jpg" />
+                  <img class="user-img" :src="my_pic" />
                 </div>
                 <input
                   type="text"
@@ -141,7 +136,8 @@
   </div>
 </template>
 <script>
-import Header from "@/components/CXD/header";
+// import Header from "@/components/CXD/header";
+import Header from "@/components/CXD/Header_update1";
 import shareInfo from "@/components/CXD/shareInfo";
 export default {
   components: {
@@ -181,6 +177,13 @@ export default {
       this.init_fun();
     },
     init_dom() {
+      //用户信息
+      if (sessionStorage.getItem("uname") != null) {
+        this.my_name = sessionStorage.getItem("uname");
+        // this.my_pic="url("+sessionStorage.getItem("user-img")+")";
+        this.my_pic = sessionStorage.getItem("user-img");
+      }
+
       //图片渲染
       this.noteColumn = Math.floor(Number(this.$route.params.noteIndex) / 4);
       this.noteIndex = Number(this.$route.params.noteIndex) % 4;
@@ -229,6 +232,7 @@ export default {
       let user_img = document.createElement("img");
       user_img.classList.add("user-image");
       user_img.src = img_src;
+      user_img.style.maxWidth = "40px";
       user_div.appendChild(user_img);
       //li里面的detail div，存储评论者昵称和评论内容，时间
       let comment_detail_div = document.createElement("div");
@@ -256,12 +260,58 @@ export default {
       // 点赞功能
       let heart = document.querySelector(".heart");
       heart.addEventListener("click", () => {
+        if (sessionStorage.getItem("uname") == null) {
+          alert("请登录后点赞");
+          return;
+        }
         if (this.like == 0) {
           this.like = 1;
           heart.classList.replace("heart", "red-heart");
+          if (sessionStorage.getItem("like-num") == null) {
+            sessionStorage.setItem("like-num", 1);
+            sessionStorage.setItem("like-1-col", this.noteColumn);
+            sessionStorage.setItem("like-1-index", this.noteIndex);
+            //设置flag,标注为detail页面的点赞
+            sessionStorage.setItem("like-1-flag", true);
+          } else {
+            let like_num = Number(sessionStorage.getItem("like-num"));
+            like_num += 1;
+            sessionStorage.setItem("like-num", like_num);
+            sessionStorage.setItem(
+              "like-" + like_num + "-col",
+              this.noteColumn
+            );
+            sessionStorage.setItem(
+              "like-" + like_num + "-index",
+              this.noteIndex
+            );
+            //设置flag,标注为detail页面的点赞
+            sessionStorage.setItem("like-" + like_num + "-flag", true);
+          }
         } else {
           this.like = 0;
           heart.classList.replace("red-heart", "heart");
+          let like_num = Number(sessionStorage.getItem("like-num"));
+          for (let i = 1; i <= like_num; i++) {
+            if (
+              sessionStorage.getItem("like-" + i + "-col") ==
+                "" + this.noteColumn &&
+              sessionStorage.getItem("like-" + i + "-index") ==
+                "" + this.noteIndex
+            ) {
+              sessionStorage.removeItem("like-" + i + "-col");
+              sessionStorage.removeItem("like-" + i + "-index");
+            }
+          }
+          //设置flag,标注为detail页面的点赞
+          if (sessionStorage.getItem("like-" + like_num + "-flag") == "true")
+            sessionStorage.removeItem("like-" + like_num + "-flag");
+
+          like_num -= 1;
+          sessionStorage.setItem("like-num", like_num);
+          if (like_num == 0) {
+            sessionStorage.removeItem("like-num");
+          }
         }
       });
       //图片切换功能
@@ -285,6 +335,10 @@ export default {
         input_btn.style.display = "block";
       });
       input_btn.addEventListener("click", () => {
+        if (sessionStorage.getItem("uname") == null) {
+          alert("请登陆后再进行评论");
+          return;
+        }
         if (comment_div.value == "") return;
         this.my_comment = comment_div.value;
         // this.add_comment(this.my_pic,this.my_name,this.my_comment,)
@@ -301,6 +355,7 @@ export default {
           this.my_comment,
           month + "-" + date
         );
+        this.comment_num += 1;
         comment_div.value = "";
         comment_div.style.background = "rgb(200, 200, 200, 0.1)";
         input_btn.style.display = "none";
@@ -713,7 +768,7 @@ input:focus {
   padding-bottom: 0px;
   width: 100%;
   height: 60px;
-  border-top: 0.5px solid rgb(232 231 231);
+  /* border-top: 0.5px solid rgb(232 231 231); */
 }
 .user .user-image-wrapper {
   float: left;
