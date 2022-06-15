@@ -81,7 +81,7 @@
         <div class="right-content">
           <div class="user">
             <div class="user-image-wrapper">
-              <img class="user-image" src="../../assets/user1.jpg" />
+              <img class="user-image" src="../../assets/Share/user1.jpg" />
             </div>
             <div class="user-name">李白</div>
             <div class="heart"></div>
@@ -115,7 +115,7 @@
               </div>
               <!-- <li class="comment-index">
                 <div class="comment-user">
-                  <img class="user-img" src="../../assets/user1.jpg" />
+                  <img class="user-img" src="../../assets/Share/user1.jpg" />
                 </div>
                 <div class="comment-detail">
                   <div class="user-name">shadon</div>
@@ -165,7 +165,7 @@ export default {
       my_comment: "",
       //用户本人信息
       my_name: "Shadon",
-      my_pic: require("@/assets/user1.jpg")
+      my_pic: require("@/assets/Share/user1.jpg")
     };
   },
   mounted() {
