@@ -985,8 +985,9 @@ label {
 /* content */
 .content {
   position: relative;
-  margin-top: 80px;
+  margin-top: 70px;
   padding-bottom: 50px;
+  background-image: url('../../assets/background1.png');
 }
 
 .content .note-container {

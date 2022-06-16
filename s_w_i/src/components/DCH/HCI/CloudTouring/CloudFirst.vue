@@ -6,85 +6,141 @@
 
         <!-- 空必要的距离 -->
         <div style="height:9.85vh;background-color: black;"></div>
-        
-        <div class="Maps-mask">
-                <div class="map-title">
+        <div style="">
+            <img
+                class="background"
+                src="@/assets/background1.png"
+                alt=""
+                width="100%"
+                height="100%"
+                style="opacity: 1;margin-top:-71px;"
+            />
+                <div class="Maps-mask">
+                    <div class="map-title">
 
-                    <div class="Maps-title-img">
-                        <img src="../../../../assets/AR_travel.png" alt="AR景观" style="transform:scale(0.8,0.72);">
+                        <div class="Maps-title-img">
+                            <img src="../../../../assets/AR_travel.png" alt="AR景观" style="transform:scale(0.8,0.72);">
+                        </div>
+                        <!-- <div class="Maps-title-btn" style="width:310px;padding:6px;margin:24px auto;border:1px solid #00BEFF;color:#00BEFF;text-align: center;">
+                            <span class="btn btn-active"><a href="http://tg.dili360.com/zuimei/index/pro.htm">立即参赛</a></span>
+                            <span id="share-btn" class="btn">分享</span>
+                        </div>
+                        <div id="share">
+                            <span class="share-title">分享到：</span>
+                            <div class="bdsharebuttonbox bdshare-button-style2-32" style="display:inline-block;" data-bd-bind="1652172766194"><a href="http://tg.dili360.com/zuimei/index.htm#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="http://tg.dili360.com/zuimei/index.htm#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="http://tg.dili360.com/zuimei/index.htm#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a><a href="http://tg.dili360.com/zuimei/index.htm#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a></div>
+                        </div> -->
+                        <!-- <div style="margin-top:300px;"><p>请用手机访问https://www.baidu.com</p></div>
+                        <div><p>AR云旅游现在开始！</p></div> -->
+                        <!-- <div style="display:flex;justify-content: center;"><img src="../../../../assets/Yun/Label/Label1.png" alt="冰墩墩" style="width:75%;" title="您好，我是冰墩墩！请用手机扫描图像，有惊喜等着您~"></div> -->
+
                     </div>
-                    <!-- <div class="Maps-title-btn" style="width:310px;padding:6px;margin:24px auto;border:1px solid #00BEFF;color:#00BEFF;text-align: center;">
-                        <span class="btn btn-active"><a href="http://tg.dili360.com/zuimei/index/pro.htm">立即参赛</a></span>
-                        <span id="share-btn" class="btn">分享</span>
+
+                    <!--  写一个绘制地图的标签。 -->
+                    <div id="regionCharts" style="width: 100%; height:129vh; z-index:101;background-color: ;"></div>
+
+                    <!-- 第二个任务 -->
+                    <div class="Maps-title-img-second">
+                            <img src="../../../../assets/interest_guess.png" alt="景观猜谜" style="transform:scale(0.8,0.72);">
                     </div>
-                    <div id="share">
-                        <span class="share-title">分享到：</span>
-                        <div class="bdsharebuttonbox bdshare-button-style2-32" style="display:inline-block;" data-bd-bind="1652172766194"><a href="http://tg.dili360.com/zuimei/index.htm#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="http://tg.dili360.com/zuimei/index.htm#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="http://tg.dili360.com/zuimei/index.htm#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a><a href="http://tg.dili360.com/zuimei/index.htm#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a></div>
-                    </div> -->
 
-                </div>
-
-                 <!--  写一个绘制地图的标签。 -->
-                <div id="regionCharts" style="width: 100%; height:129vh; z-index:101;background-color: ;"></div>
-
-                <!-- 第二个任务 -->
-                <div class="Maps-title-img-second">
-                        <img src="../../../../assets/interest_guess.png" alt="景观猜谜" style="transform:scale(0.8,0.72);">
-                </div>
-
-                <!-- 景观图片 -->
-                <div style="margin-top:260px;background-color:;">
-                    <el-row style="margin:auto;width:90%;">
-                    <el-col
-                        v-for="(item,index) in placesContent"
-                        :key="item"
-                        :span="6"
-                        :offset="index %5 !==0 ? 0 : 0.8"
-                        style="background-color: aqua;height:250px;"
-                        >
-                        <!-- 卡片内容 -->
-                        <el-card shadow="" :body-style="{ padding: '0px' }"  style="height:250px;margin-bottom: 5vh;" class="recommand-list">
-                            <img
-                                :src="item.picPath"
-                                style="width:160%;"
-                            />
-                            <span class="mask">
-                                <div class="detail">
-                                    <h3>{{item.placesDetail[0]}}</h3>
-                                    <p>{{item.placesDetail[1]}}</p>
-                                </div>
-                            </span>
-                            <span class="tips-province" style="display: block;">{{item.placesDetail[2]}}</span>
-                        </el-card>
-                    </el-col>
-                    </el-row>
-                </div>
-
-                <div style="height:50px;"></div>
-
-                <div style="position:absolute;top:25px;z-index:1050;left:300px;">
-                    <div>
-                        <el-card class="box-card" v-show="showGreatWall">
-                        <el-row>
-                            <el-col :span="8" style="background-color:;">
-                                <div style="display:flex;justify-content: center;"><img src="../../../../assets/Yun/BingDunDun.png" alt="冰墩墩" style="width:78%;"></div>
-                                <div style="margin-top:0px;display:flex;justify-content: center;"><img src="../../../../assets/Yun/XueRongRong.png" alt="雪融融" style="width:78%;"></div>
-                                <div style="margin-top:-25px;display:flex;justify-content: center;"><el-button type="danger" @click="back2Cloud">返回云旅游</el-button></div>
-                            </el-col>
-                            <el-col :span="16" style="background-color:;margin:auto">
-                                <div style="background-color:;display:flex;justify-content: center;"><img src="../../../../assets/Yun/Great_Wall.png" alt="长城" style="width:90%;" ></div>
-                                <div class="textHead" style="">古长城</div>
-                                <div style="margin-top:10px;color:white;text-indent: 2em;">{{this.introText1}}</div>
-                                <div style="margin-top:10px;color:white;text-indent: 2em;">{{this.introText2}}</div>
-                                <div style="margin-top:-15px;display:flex;justify-content: right;"><img src="../../../../assets/Yun/Beijing.png" alt="北京地图" style="width:9%;"></div>
-                            </el-col>
+                    <!-- 景观图片 -->
+                    <div style="margin-top:260px;background-color:;">
+                        <el-row style="margin:auto;width:90%;">
+                        <el-col
+                            v-for="(item,index) in placesContent"
+                            :key="item"
+                            :span="6"
+                            :offset="index %5 !==0 ? 0 : 0.8"
+                            style="background-color: aqua;height:250px;"
+                            >
+                            <!-- 卡片内容 -->
+                            <el-card shadow="" :body-style="{ padding: '0px' }"  style="height:250px;margin-bottom: 5vh;" class="recommand-list">
+                                <img
+                                    :src="item.picPath"
+                                    style="width:160%;"
+                                />
+                                <span class="mask">
+                                    <div class="detail">
+                                        <h3>{{item.placesDetail[0]}}</h3>
+                                        <p>{{item.placesDetail[1]}}</p>
+                                    </div>
+                                </span>
+                                <span class="tips-province" style="display: block;">{{item.placesDetail[2]}}</span>
+                            </el-card>
+                        </el-col>
                         </el-row>
-                        </el-card>
                     </div>
-                </div>
 
-                <!-- copy!!! -->
-        </div> 
+                    <div style="height:50px;"></div>
+
+                    <!-- 古长城 -->
+                    <div style="position:absolute;top:25px;z-index:1050;left:300px;">
+                        <div>
+                            <el-card class="box-card" v-show="showGreatWall">
+                            <el-row>
+                                <el-col :span="8" style="background-color:;">
+                                    <div style="display:flex;justify-content: center;"><img src="../../../../assets/Yun/BingDunDun(1).png" alt="冰墩墩" style="width:78%;" title="您好，我是冰墩墩！请用手机扫描图像，有惊喜等着您~"></div>
+                                    <div style="margin-top:0px;display:flex;justify-content: center;"><img src="../../../../assets/Yun/XueRongRong(1).png" alt="雪融融" style="width:78%;" title="您好，我是雪融融！AR模型触发可能需要时间，请您耐心等待~"></div>
+                                    <div style="margin-top:-25px;display:flex;justify-content: center;"><el-button type="danger" @click="back2Cloud">返回云旅游</el-button></div>
+                                </el-col>
+                                <el-col :span="16" style="background-color:;margin:auto">
+                                    <div style="background-color:;display:flex;justify-content: center;"><img src="../../../../assets/Yun/Great_Wall.png" alt="长城" style="width:90%;" ></div>
+                                    <div class="textHead" style="">古长城</div>
+                                    <div style="margin-top:10px;color:white;text-indent: 2em;">{{this.introText_GW1}}</div>
+                                    <div style="margin-top:10px;color:white;text-indent: 2em;">{{this.introText_GW2}}</div>
+                                    <div style="margin-top:-15px;display:flex;justify-content: right;"><img src="../../../../assets/Yun/Beijing_Pic(1).png" alt="北京地图" style="width:15%;"></div>
+                                </el-col>
+                            </el-row>
+                            </el-card>
+                        </div>
+                    </div>
+
+                    <!-- 阿房宫 -->
+                    <div style="position:absolute;top:25px;z-index:1050;left:300px;">
+                        <div>
+                            <el-card class="box-card" v-show="showEPang">
+                            <el-row>
+                                <el-col :span="8" style="background-color:;">
+                                    <div style="margin-top:15px;display:flex;justify-content: center;"><img src="../../../../assets/Yun/Bing.png" alt="兵马俑" style="width:180%;" title="您好，我是兵马俑小秦！请用手机扫描图像，有惊喜等着您~"></div>
+                                    <div style="margin-top:25px;display:flex;justify-content: center;"><el-button type="danger" @click="back2Cloud">返回云旅游</el-button></div>
+                                </el-col>
+                                <el-col :span="16" style="background-color:;margin:auto">
+                                    <div style="background-color:;display:flex;justify-content: center;"><img src="../../../../assets/Yun/EPang.png" alt="阿房宫" style="width:90%;" ></div>
+                                    <div class="textHead" style="">阿房宫</div>
+                                    <div style="margin-top:10px;color:white;text-indent: 2em;">{{this.introText_EP1}}</div>
+                                    <div style="margin-top:10px;color:white;text-indent: 2em;">{{this.introText_EP2}}</div>
+                                    <div style="margin-top:-10px;display:flex;justify-content: right;"><img src="../../../../assets/Yun/ShanXi_1(1).png" alt="陕西地图" style="width:15%;"></div>
+                                </el-col>
+                            </el-row>
+                            </el-card>
+                        </div>
+                    </div>
+
+                    <!-- 莫高窟 -->
+                    <div style="position:absolute;top:25px;z-index:1050;left:300px;">
+                        <div>
+                            <el-card class="box-card" v-show="showMoGao">
+                            <el-row>
+                                <el-col :span="8" style="background-color:;">
+                                    <div style="margin-top:15px;display:flex;justify-content: center;"><img src="../../../../assets/Yun/HeWa(1).png" alt="兵马俑" style="width:190%;" title="您好，我是河娃！请用手机扫描图像，有惊喜等着您~"></div>
+                                    <div style="margin-top:25px;display:flex;justify-content: center;"><el-button type="danger" @click="back2Cloud">返回云旅游</el-button></div>
+                                </el-col>
+                                <el-col :span="16" style="background-color:;margin:auto">
+                                    <div style="background-color:;display:flex;justify-content: center;"><img src="../../../../assets/Yun/MoGao.png" alt="莫高窟" style="width:90%;" ></div>
+                                    <div class="textHead" style="">莫高窟</div>
+                                    <div style="margin-top:10px;color:white;text-indent: 2em;">{{this.introText_MG1}}</div>
+                                    <div style="margin-top:10px;color:white;text-indent: 2em;">{{this.introText_MG2}}</div>
+                                    <div style="margin-top:-15px;display:flex;justify-content: right;"><img src="../../../../assets/Yun/Gansu(1).png" alt="甘肃地图" style="width:15%;"></div>
+                                </el-col>
+                            </el-row>
+                            </el-card>
+                        </div>
+                    </div>
+
+                    <!-- copy!!! -->
+            </div> 
+        </div>    
+        
 
   </div>
 </template>
@@ -117,8 +173,14 @@ export default {
       ],
 
             showGreatWall:false,
-            introText1:"经历了2000多年风雨的长城，1987年被联合国教科文组织列入世界文化遗产名录，是中国最具代表性的自然与文化遗产，是中华民族勇敢、坚韧、智慧、精神的象征。",
-            introText2:"然而，在和平时期的我们，却眼睁睁地看着昔日用其“身躯”承受了无数战火硝烟的古长城，在岁月侵蚀及人为破坏下慢慢毁弃。中国长城学会的考察结果表明，明代万里长城有较好墙体的部分，剩下不到20%，有明显可见遗址部分已不到30%。"
+            showEPang:false,
+            showMoGao:false,
+            introText_GW1:"经历了2000多年风雨的长城，1987年被联合国教科文组织列入世界文化遗产名录，是中国最具代表性的自然与文化遗产，是中华民族勇敢、坚韧、智慧、精神的象征。",
+            introText_GW2:"然而，在和平时期的我们，却眼睁睁地看着昔日用其“身躯”承受了无数战火硝烟的古长城，在岁月侵蚀及人为破坏下慢慢毁弃。中国长城学会的考察结果表明，明代万里长城有较好墙体的部分，剩下不到20%，有明显可见遗址部分已不到30%。",
+            introText_EP1:"项羽火烧阿房宫的说法一般源自于杜牧的《阿房宫赋》，文中前段详细描写了阿房宫的美丽雄伟奢华，之后写项羽一把火烧尽阿房宫的结局，前后反差之大，给人心灵上的极具震撼，让人深信不疑。",
+            introText_EP2:"但现代以后，经过考古学家的勘察，并未发现有火烧的痕迹。最早记录火烧秦宫的出自司马迁的《史记秦本记》，上面也只是写“烧秦宫室，火三月不灭”，并未写阿房宫。所以有说法称火烧的并非阿旁宫。",
+            introText_MG1:"“莫高窟”位于甘肃敦煌，又称“千佛洞”。它的历史可以追溯到前秦时期，被誉为“世界上现存规模最大、内容最丰富的佛教圣地”。",
+            introText_MG2:"20世纪初的时候，当时驻守莫高窟的道士贪图几百银两，将无价经书、壁画等低价出售给了西方人。如今，莫高窟被人们重新重视起来，但激增的游客造成窟内湿气过重，加上不文明游客的肆意破坏，许多珍贵的壁画已经永远的损毁、消失了。",
         }
     },
 
@@ -129,12 +191,30 @@ export default {
             this.showGreatWall=true;
         },
 
+        displayEPang(){
+            this.showEPang=true;
+        },
+
+        displayMoGao(){
+            this.showMoGao=true;
+        },
+
         back2Cloud(){
             this.showGreatWall=false;
+            this.showEPang=false;
+            this.showMoGao=false;
         },
 
         monitorGreatWall(){
             this.showGreatWall=!this.showGreatWall;
+        },
+
+        monitorEPang(){
+            this.showEPang=!this.showEPang;
+        },
+
+        monitorMoGao(){
+            this.showMoGao=!this.showMoGao;
         },
 
         drawregionCharts(){
@@ -229,9 +309,13 @@ export default {
                     alert('藏地密码！')
                 }
                 else if (params.name=="北京"){
-                    // this.showGreatWall=!this.showGreatWall;
                     this.displayGreatWall();
-                    // alert(this.showGreatWall);
+                }
+                else if (params.name=="陕西"){
+                    this.displayEPang();
+                }
+                else if (params.name=="甘肃"){
+                    this.displayMoGao();
                 }
                 else{
                     alert('暂无'  + '地图数据'+params.name);
@@ -254,6 +338,14 @@ export default {
 </script>
 
 <style scoped>
+
+.background {
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+}
+
 .Maps-mask {
     width: 100%;
     height:159vh;

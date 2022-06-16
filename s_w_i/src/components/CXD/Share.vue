@@ -1,93 +1,95 @@
 <template>
   <div class="cxd-share">
     <Header></Header>
-    <div class="content">
-      <div class="note-container">
-        <div class="note-wrapper">
-          <div class="note-column">
-            <!-- <div class="note">
-              <div class="note-info">
-                <div class="page">
-                  <div class="box">
-                    <div class="slideWrapper" style="visibility: hidden;">
-                      <a href="#" target="_blank"
-                        ><img
-                          class="slide img"
-                          src="../../assets/Share/500_5.jpg"
-                          alt="5"
-                      /></a>
-                    </div>
-                    <div class="slideWrapper">
-                      <a href="#" target="_blank"
-                        ><img
-                          class="slide img"
-                          src="../../assets/Share/500_1.jpg"
-                          alt="1"
-                      /></a>
-                    </div>
-                    <div class="slideWrapper">
-                      <a href="#" target="_blank"
-                        ><img
-                          class="slide img"
-                          src="../../assets/Share/500_2.jpg"
-                          alt="2"
-                      /></a>
-                    </div>
-                    <div class="slideWrapper">
-                      <a href="#" target="_blank"
-                        ><img
-                          class="slide img"
-                          src="../../assets/Share/500_3.jpg"
-                          alt="3"
-                      /></a>
-                    </div>
-                    <div class="slideWrapper">
-                      <a href="#" target="_blank"
-                        ><img
-                          class="slide img"
-                          src="../../assets/Share/500_4.jpg"
-                          alt="4"
-                      /></a>
-                    </div>
-                    <div class="slideWrapper">
-                      <a href="#" target="_blank"
-                        ><img
-                          class="slide img"
-                          src="../../assets/Share/500_5.jpg"
-                          alt="5"
-                      /></a>
-                    </div>
-                    <div class="slideWrapper">
-                      <a href="#" target="_blank"
-                        ><img
-                          class="slide img"
-                          src="../../assets/Share/500_1.jpg"
-                          alt="1"
-                      /></a>
+    <div>
+      <div class="content">
+        <div class="note-container">
+          <div class="note-wrapper">
+            <div class="note-column">
+              <!-- <div class="note">
+                <div class="note-info">
+                  <div class="page">
+                    <div class="box">
+                      <div class="slideWrapper" style="visibility: hidden;">
+                        <a href="#" target="_blank"
+                          ><img
+                            class="slide img"
+                            src="../../assets/Share/500_5.jpg"
+                            alt="5"
+                        /></a>
+                      </div>
+                      <div class="slideWrapper">
+                        <a href="#" target="_blank"
+                          ><img
+                            class="slide img"
+                            src="../../assets/Share/500_1.jpg"
+                            alt="1"
+                        /></a>
+                      </div>
+                      <div class="slideWrapper">
+                        <a href="#" target="_blank"
+                          ><img
+                            class="slide img"
+                            src="../../assets/Share/500_2.jpg"
+                            alt="2"
+                        /></a>
+                      </div>
+                      <div class="slideWrapper">
+                        <a href="#" target="_blank"
+                          ><img
+                            class="slide img"
+                            src="../../assets/Share/500_3.jpg"
+                            alt="3"
+                        /></a>
+                      </div>
+                      <div class="slideWrapper">
+                        <a href="#" target="_blank"
+                          ><img
+                            class="slide img"
+                            src="../../assets/Share/500_4.jpg"
+                            alt="4"
+                        /></a>
+                      </div>
+                      <div class="slideWrapper">
+                        <a href="#" target="_blank"
+                          ><img
+                            class="slide img"
+                            src="../../assets/Share/500_5.jpg"
+                            alt="5"
+                        /></a>
+                      </div>
+                      <div class="slideWrapper">
+                        <a href="#" target="_blank"
+                          ><img
+                            class="slide img"
+                            src="../../assets/Share/500_1.jpg"
+                            alt="1"
+                        /></a>
+                      </div>
                     </div>
                   </div>
+                  <a class="title">上海佘山，出门野餐时记得带水果呀</a>
                 </div>
-                <a class="title">上海佘山，出门野餐时记得带水果呀</a>
-              </div>
-              <div class="info">
-                <div class="user">
-                  <div class="user-image-wrapper">
-                    <img class="img" src="../../assets/user1.jpg" />
+                <div class="info">
+                  <div class="user">
+                    <div class="user-image-wrapper">
+                      <img class="img" src="../../assets/user1.jpg" />
+                    </div>
+                    <span class="user-name">shadon</span>
                   </div>
-                  <span class="user-name">shadon</span>
-                </div>
-                <div class="like">
-                  <i class="heart"></i>
-                  <span class="like-num">221</span>
+                  <div class="like">
+                    <i class="heart"></i>
+                    <span class="like-num">221</span>
+                  </div>
                 </div>
               </div>
+              </div> -->
             </div>
-            </div> -->
+            <div class="note-column"></div>
+            <div class="note-column"></div>
+            <div class="note-column"></div>
+            <div class="note-column"></div>
           </div>
-          <div class="note-column"></div>
-          <div class="note-column"></div>
-          <div class="note-column"></div>
-          <div class="note-column"></div>
         </div>
       </div>
     </div>
@@ -568,6 +570,13 @@ export default {
 </script>
 
 <style>
+.background {
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+}
+
 .cxd-share {
   position: absolute;
   top: 0;

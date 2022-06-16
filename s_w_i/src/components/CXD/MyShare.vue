@@ -2,53 +2,67 @@
   <div class="cxd-my-share">
     <Header></Header>
     <div style="height:100px"></div>
-    <div style="width:60%;min-width: 800px;margin:0 auto;">
-      <div class="imgBox">
-        <div class="warp">
-          <!-- <div class="add-img-block" >
-          <img src="../../assets/test.png" class="add-img"/>
-        </div> -->
-          <div class="warp-content">
-            + <input class="img-input" type="file" id="img-input" />
+    <div>
+      <img
+          class="background"
+          src="@/assets/background1.png"
+          alt=""
+          width="100%"
+          height="100%"
+          style="opacity: 1;margin-top:-151px;"
+      />
+      <div style="width:60%;min-width: 800px;margin:0 auto;">
+        <div class="imgBox">
+          <div style="width:50%;height:90px;margin-left:200px;">
+            <img src="../../assets/Besides/My_Share(1).png" alt="分享笔记" style="transform:scale(0.8,0.72);margin-top:-230px;">
+          </div>
+          <div class="warp">
+            <!-- <div class="add-img-block" >
+            <img src="../../assets/test.png" class="add-img"/>
+          </div> -->
+            <div class="warp-content">
+              + <input class="img-input" type="file" id="img-input" />
+            </div>
+          </div>
+          <div class="warn-info" style="display:none" id="pic-warn">
+            <div class="arrow"></div>
+            <div class="warn">
+              请放置图片
+            </div>
           </div>
         </div>
-        <div class="warn-info" style="display:none" id="pic-warn">
-          <div class="arrow"></div>
-          <div class="warn">
-            请放置图片
-          </div>
-        </div>
-      </div>
-      <div>
-        <div class="title-warp">
-          <div>
-            <input
-              type="text"
-              class="title-input"
-              placeholder="填写标题会有更多赞哦~"
-            />
-            <div class="warn-info" style="display:none" id="title-warn">
-              <div class="arrow"></div>
-              <div class="warn">
-                请填写标题
+        <div>
+          <div class="title-warp">
+            <div>
+              <input
+                type="text"
+                class="title-input"
+                placeholder="填写标题会有更多赞哦~"
+              />
+              <div class="warn-info" style="display:none" id="title-warn">
+                <div class="arrow"></div>
+                <div class="warn">
+                  请填写标题
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        <div class="note-content-warp">
-          <textarea class="note-content" placeholder="添加正文"></textarea>
-          <div class="warn-info" style="display:none" id="content-warn">
-            <div class="arrow"></div>
-            <div class="warn">
-              请填写主体内容
+          <div class="note-content-warp">
+            <textarea class="note-content" placeholder="添加正文"></textarea>
+            <div class="warn-info" style="display:none" id="content-warn">
+              <div class="arrow"></div>
+              <div class="warn">
+                请填写主体内容
+              </div>
             </div>
           </div>
-        </div>
-        <div class="submit-warp">
-          <button class="submit-button" id="submit">提交</button>
+          <div class="submit-warp" style="text-align: center;">
+            <button class="submit-button" id="submit">提交</button>
+          </div>
         </div>
       </div>
     </div>
+    
   </div>
 </template>
 <script>
@@ -157,6 +171,13 @@ export default {
 };
 </script>
 <style>
+.background {
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+}
+
 .cxd-my-share .add-img-block {
   display: inline-block;
   width: 200px;
@@ -200,9 +221,10 @@ textarea {
   line-height: 200px;
   text-align: center;
   font-size: 30px;
-  border: 0.5px dashed rgb(0, 0, 0, 0.3);
-  color: rgb(0, 0, 0, 0.3);
+  border: 0.5px dashed rgb(0, 0, 0);
+  color: rgb(0, 0, 0);
   border-radius: 10px;
+  background-color: white;
 }
 
 .img-input {

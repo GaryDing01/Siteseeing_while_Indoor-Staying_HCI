@@ -237,7 +237,7 @@ export default {
         });
         if (flag == 1) {
           //可以跳转到主页
-          this.$router.push("/PersonalCenter");
+          this.$router.push("/Share");
         } else {
           alert("用户名或密码错误，请重新输入");
         }
