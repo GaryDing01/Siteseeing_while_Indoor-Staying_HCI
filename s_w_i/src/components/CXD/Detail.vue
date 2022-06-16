@@ -1,119 +1,121 @@
 <template>
   <div class="cxd-detail">
     <Header></Header>
-    <div class="content">
-      <div class="left">
-        <div class="left-content">
-          <div class="note">
-            <div class="note-info">
-              <div class="page">
-                <div class="box">
-                  <div class="slideWrapper" style="visibility: visiable;">
-                    <img class="slide img" :src="slideImg[4]" alt="5" />
-                  </div>
-                  <div class="slideWrapper">
-                    <img class="slide img" :src="slideImg[0]" alt="1" />
-                  </div>
-                  <div class="slideWrapper">
-                    <img class="slide img" :src="slideImg[1]" alt="2" />
-                  </div>
-                  <div class="slideWrapper">
-                    <img class="slide img" :src="slideImg[2]" alt="3" />
-                  </div>
-                  <div class="slideWrapper">
-                    <img class="slide img" :src="slideImg[3]" alt="4" />
-                  </div>
-                  <div class="slideWrapper">
-                    <img class="slide img" :src="slideImg[4]" alt="5" />
-                  </div>
-                  <div class="slideWrapper">
-                    <img class="slide img" :src="slideImg[0]" alt="1" />
+    <div class="background"></div>
+    <div>
+      <div class="content">
+        <div class="left">
+          <div class="left-content">
+            <div class="note">
+              <div class="note-info">
+                <div class="page">
+                  <div class="box">
+                    <div class="slideWrapper" style="visibility: visiable;">
+                      <img class="slide img" :src="slideImg[4]" alt="5" />
+                    </div>
+                    <div class="slideWrapper">
+                      <img class="slide img" :src="slideImg[0]" alt="1" />
+                    </div>
+                    <div class="slideWrapper">
+                      <img class="slide img" :src="slideImg[1]" alt="2" />
+                    </div>
+                    <div class="slideWrapper">
+                      <img class="slide img" :src="slideImg[2]" alt="3" />
+                    </div>
+                    <div class="slideWrapper">
+                      <img class="slide img" :src="slideImg[3]" alt="4" />
+                    </div>
+                    <div class="slideWrapper">
+                      <img class="slide img" :src="slideImg[4]" alt="5" />
+                    </div>
+                    <div class="slideWrapper">
+                      <img class="slide img" :src="slideImg[0]" alt="1" />
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div class="pic-tab">
-              <div class="each active">
-                <div
-                  class="img"
-                  :style="{
-                    'background-image': 'url(' + eachBackgroundImage[0] + ')'
-                  }"
-                ></div>
-              </div>
-              <div class="each">
-                <div
-                  class="img"
-                  :style="{
-                    'background-image': 'url(' + eachBackgroundImage[1] + ')'
-                  }"
-                ></div>
-              </div>
-              <div class="each">
-                <div
-                  class="img"
-                  :style="{
-                    'background-image': 'url(' + eachBackgroundImage[2] + ')'
-                  }"
-                ></div>
-              </div>
-              <div class="each">
-                <div
-                  class="img"
-                  :style="{
-                    'background-image': 'url(' + eachBackgroundImage[3] + ')'
-                  }"
-                ></div>
-              </div>
-              <div class="each">
-                <div
-                  class="img"
-                  :style="{
-                    'background-image': 'url(' + eachBackgroundImage[4] + ')'
-                  }"
-                ></div>
+              <div class="pic-tab">
+                <div class="each active">
+                  <div
+                    class="img"
+                    :style="{
+                      'background-image': 'url(' + eachBackgroundImage[0] + ')'
+                    }"
+                  ></div>
+                </div>
+                <div class="each">
+                  <div
+                    class="img"
+                    :style="{
+                      'background-image': 'url(' + eachBackgroundImage[1] + ')'
+                    }"
+                  ></div>
+                </div>
+                <div class="each">
+                  <div
+                    class="img"
+                    :style="{
+                      'background-image': 'url(' + eachBackgroundImage[2] + ')'
+                    }"
+                  ></div>
+                </div>
+                <div class="each">
+                  <div
+                    class="img"
+                    :style="{
+                      'background-image': 'url(' + eachBackgroundImage[3] + ')'
+                    }"
+                  ></div>
+                </div>
+                <div class="each">
+                  <div
+                    class="img"
+                    :style="{
+                      'background-image': 'url(' + eachBackgroundImage[4] + ')'
+                    }"
+                  ></div>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-      <div class="right">
-        <div class="right-content">
-          <div class="user">
-            <div class="user-image-wrapper">
-              <img class="user-image" src="../../assets/Share/user1.jpg" />
-            </div>
-            <div class="user-name">李白</div>
-            <div class="heart"></div>
-          </div>
-          <div class="note-content">
-            <div class="note-header">
-              <div class="title">
-                <div class="title-text">人间四月芳菲尽，山寺桃花始盛开。</div>
+        <div class="right">
+          <div class="right-content">
+            <div class="user">
+              <div class="user-image-wrapper">
+                <img class="user-image" src="../../assets/Share/user1.jpg" />
               </div>
+              <div class="user-name">李白</div>
+              <div class="heart"></div>
             </div>
-            <div class="note-detail">
-              人间四月芳菲尽,山寺桃花始盛开,四月，走在春末的季里。只需舒眉一瞻，便有柔柔的明媚妖娆了眼眸。绿柳吐烟，陌上花艳。四月的天爱上了三月的地，但却离她太远，等到他思念的忧伤逆流成河时，天就会下起这丝丝入怀的雨，刮起这满面桃花的风。四月的风，恣意地吹拂亲吻着我们的脸，轻轻摇曳着我们的心；四月的云，躲在星空之中，默默地承载着尘世永恒的依恋。四月美在祭祖的哀思，美在人间的温情，四月，美在诗里。
-            </div>
-            <div class="date">05-02</div>
-            <div class="comment">
-              <div class="comment-num">
-                共<span class="num">{{ comment_num }}</span
-                >条评论
-              </div>
-              <div class="my-comment">
-                <div class="comment-user">
-                  <img class="user-img" :src="my_pic" />
+            <div class="note-content">
+              <div class="note-header">
+                <div class="title">
+                  <div class="title-text">人间四月芳菲尽，山寺桃花始盛开。</div>
                 </div>
-                <input
-                  type="text"
-                  class="comment-input"
-                  placeholder="爱评论的人运气都不差~"
-                />
-                <button class="input-btn">提交</button>
-                <div style="clear:both"></div>
               </div>
-              <!-- <li class="comment-index">
+              <div class="note-detail">
+                人间四月芳菲尽,山寺桃花始盛开,四月，走在春末的季里。只需舒眉一瞻，便有柔柔的明媚妖娆了眼眸。绿柳吐烟，陌上花艳。四月的天爱上了三月的地，但却离她太远，等到他思念的忧伤逆流成河时，天就会下起这丝丝入怀的雨，刮起这满面桃花的风。四月的风，恣意地吹拂亲吻着我们的脸，轻轻摇曳着我们的心；四月的云，躲在星空之中，默默地承载着尘世永恒的依恋。四月美在祭祖的哀思，美在人间的温情，四月，美在诗里。
+              </div>
+              <div class="date">05-02</div>
+              <div class="comment">
+                <div class="comment-num">
+                  共<span class="num">{{ comment_num }}</span
+                  >条评论
+                </div>
+                <div class="my-comment">
+                  <div class="comment-user">
+                    <img class="user-img" :src="my_pic" />
+                  </div>
+                  <input
+                    type="text"
+                    class="comment-input"
+                    placeholder="爱评论的人运气都不差~"
+                  />
+                  <button class="input-btn">提交</button>
+                  <div style="clear:both"></div>
+                </div>
+                <!-- <li class="comment-index">
                 <div class="comment-user">
                   <img class="user-img" src="../../assets/Share/user1.jpg" />
                 </div>
@@ -127,11 +129,12 @@
                   </div>
                 </div>
               </li> -->
+              </div>
             </div>
           </div>
         </div>
+        <div style="clear:both"></div>
       </div>
-      <div style="clear:both"></div>
     </div>
   </div>
 </template>
@@ -636,6 +639,15 @@ export default {
 }
 </style>
 <style scoped>
+.background {
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  position: fixed;
+  background-image: url("../../assets/background1.png");
+}
+
 .scrollbar {
   width: 30px;
   height: 300px;
@@ -677,14 +689,15 @@ input:focus {
   margin-bottom: 100px;
 }
 .left {
-  padding: 0px 20px 0 150px;
+  padding: 0px 0px 0 150px;
   width: 55%;
   float: left;
 }
 .left-content {
   width: 100%;
   padding: 20px 40px;
-  background-color: rgb(250, 250, 250);
+  background-color: rgb(255, 255, 255, 1);
+  /* background-color: rgb(250, 250, 250); */
 }
 .note {
   width: 400px;
@@ -762,6 +775,7 @@ input:focus {
   width: 100%;
   height: 100%;
   overflow: auto;
+  background-color: rgb(255, 255, 255, 1);
 }
 .user {
   padding: 5px;

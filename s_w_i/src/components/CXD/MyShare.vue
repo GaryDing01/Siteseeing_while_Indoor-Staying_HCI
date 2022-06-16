@@ -171,13 +171,6 @@ export default {
 };
 </script>
 <style>
-.background {
-  z-index: -1;
-  width: 100%;
-  height: 100%;
-  position: fixed;
-}
-
 .cxd-my-share .add-img-block {
   display: inline-block;
   width: 200px;
@@ -192,6 +185,12 @@ export default {
 }
 </style>
 <style scoped>
+.background {
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+}
 * {
   box-sizing: border-box;
   list-style-type: none;

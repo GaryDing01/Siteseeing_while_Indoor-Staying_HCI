@@ -2,6 +2,7 @@
   <div class="cxd-share">
     <Header></Header>
     <div>
+      <div class="background"></div>
       <div class="content">
         <div class="note-container">
           <div class="note-wrapper">
@@ -570,13 +571,6 @@ export default {
 </script>
 
 <style>
-.background {
-  z-index: -1;
-  width: 100%;
-  height: 100%;
-  position: fixed;
-}
-
 .cxd-share {
   position: absolute;
   top: 0;
@@ -588,13 +582,23 @@ export default {
   flex-direction: column;
   justify-content: space-between;
 }
+
+.cxd-share .background {
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  position: fixed;
+  background-image: url("../../assets/background1.png") ;
+}
+
 /* content */
 .cxd-share .content {
   position: relative;
   margin-top: 100px;
   padding-bottom: 50px;
   /* border-top: 1px solid #eee; */
-  background-color: #fff;
+  /* background-color: #fff; */
 }
 .cxd-share .content .note-container {
   margin: 30px 0 0;

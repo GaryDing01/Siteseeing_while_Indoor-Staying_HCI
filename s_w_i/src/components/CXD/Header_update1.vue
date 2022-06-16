@@ -11,9 +11,9 @@
       <!-- <div style="width:5%;background-color=black;"></div> -->
 
       <ul class="navigation-bar" style="">
-        <a class="active item current-tab">景点推荐</a>
-        <a class="active item-share ">云旅游</a>
-        <a class="active item">旅游社区</a>
+        <a class="active item ">景点推荐</a>
+        <a class="active item ">云旅游</a>
+        <a class="active item ">旅游社区</a>
         <a class="active item">分享笔记</a>
         <a class="active item">个人中心</a>
         <a class="active item">登录/注册</a>
@@ -59,7 +59,7 @@
 <script>
 import global from "../../assets/DCH/global.js";
 
-var now_tab = 0;
+var now_tab = Number(sessionStorage.getItem("now-page"));
 
 export default {
   name: "Header_update1",
@@ -78,22 +78,26 @@ export default {
 
   methods: {
     init() {
+      //查看session是否有now-page,若没有，说明是第一次进入页面，设置为2
+      if (sessionStorage.getItem("now-page") == null) {
+        now_tab = 2;
+        sessionStorage.setItem("now-page", 2);
+      }
       //给logo绑定事件
       let logo = document.querySelector(".logo");
       logo.addEventListener("click", function() {
+        sessionStorage.setItem("now-page", 2);
         //跳转到笔记广场
+        self.location.href = "/#/Share";
       });
       //给tab栏绑定事件
       let tabs = document.getElementsByClassName("active");
+      //找到当前的模块
+      tabs[now_tab].classList.add("current-tab");
       for (let i = 0; i < tabs.length; i++) {
         tabs[i].addEventListener("click", function() {
-          if (now_tab == 1) {
-            tabs[1].classList.remove("item-share-current");
-          } else tabs[now_tab].classList.remove("current-tab");
           now_tab = i;
-          if (i != 1) {
-            tabs[i].classList.add("current-tab");
-          } else tabs[i].classList.add("item-share-current");
+          sessionStorage.setItem("now-page", now_tab);
           switch (i) {
             case 0:
               //跳转到语音识别
