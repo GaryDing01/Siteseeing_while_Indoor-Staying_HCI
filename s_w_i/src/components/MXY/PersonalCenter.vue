@@ -985,7 +985,7 @@ label {
 /* content */
 .content {
   position: relative;
-  margin-top: 70px;
+  margin-top: 61px;
   padding-bottom: 50px;
   background-image: url('../../assets/background1.png');
 }
