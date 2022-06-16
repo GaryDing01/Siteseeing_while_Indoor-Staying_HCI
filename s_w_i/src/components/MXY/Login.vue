@@ -258,7 +258,7 @@ export default {
           //可以跳转到主页
           // this.$router.push("Homepage");
           this.$router.push({
-            path: "/PersonalCenter"
+            path: "/Share"
           });
         } else {
           alert("用户名或密码错误，请重新输入");
